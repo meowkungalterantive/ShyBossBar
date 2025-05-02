@@ -40,50 +40,9 @@ class ShyBossBarPlugin : JavaPlugin() {
         Bukkit.getServer().consoleSender.sendMessage(prefix + ChatColor.GREEN + "Loading ShyBossBar ...")
         this.saveDefaultConfig()
         this.reloadConfig()
-        val versions = if (areLegacyVersionsIncluded) {
-            listOf(
-                Version.VERSION_1_9_R2,
-                Version.VERSION_1_10_R1,
-                Version.VERSION_1_11_R1,
-                Version.VERSION_1_12_R1,
-                Version.VERSION_1_13_R1,
-                Version.VERSION_1_13_R2,
-                Version.VERSION_1_14_R1,
-                Version.VERSION_1_15_R1,
-                Version.VERSION_1_16_R1,
-                Version.VERSION_1_16_R2,
-                Version.VERSION_1_16_R3,
-                Version.VERSION_1_17_R1,
-                Version.VERSION_1_18_R1,
-                Version.VERSION_1_18_R2,
-                Version.VERSION_1_19_R1,
-                Version.VERSION_1_19_R2,
-                Version.VERSION_1_19_R3,
-                Version.VERSION_1_20_R1,
-                Version.VERSION_1_20_R2,
-                Version.VERSION_1_20_R3,
-                Version.VERSION_1_20_R4,
-                Version.VERSION_1_21_R1,
-                Version.VERSION_1_21_R2,
-                Version.VERSION_1_21_R3,
-                Version.VERSION_1_21_R4,
-            )
-        } else {
-            listOf(Version.VERSION_1_21_R4)
-        }
-
-        if (!Version.serverVersion.isCompatible(*versions.toTypedArray())) {
-            logger.log(Level.SEVERE, "================================================")
-            logger.log(Level.SEVERE, "ShyBossBar does not support your server version")
-            logger.log(Level.SEVERE, "Install v" + versions[0].from + " - v" + versions[versions.size - 1].to)
-            logger.log(Level.SEVERE, "Need support for a particular version? Go to https://www.patreon.com/Shynixn")
-            logger.log(Level.SEVERE, "Plugin gets now disabled!")
-            logger.log(Level.SEVERE, "================================================")
-            Bukkit.getPluginManager().disablePlugin(this)
-            return
-        }
-
-        logger.log(Level.INFO, "Loaded NMS version ${Version.serverVersion}.")
+        
+        // Log server version information
+        logger.log(Level.INFO, "Server is running version ${Version.serverVersion}")
 
         if (mcCoroutineConfiguration.isFoliaLoaded && !checkIfFoliaIsLoadable()) {
             logger.log(Level.SEVERE, "================================================")
